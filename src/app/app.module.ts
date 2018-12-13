@@ -15,7 +15,9 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { PostsService } from './services/posts.service';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
     imports: [
@@ -27,9 +29,6 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-        })
     ],
     declarations: [
         AppComponent,
@@ -37,8 +36,11 @@ import { HttpClientModule } from '@angular/common/http';
         LoginComponent,
     ],
     providers: [
-        AuthService
+        PostsService,
+        AuthService,
+        { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
     ],
     bootstrap: [AppComponent]
 })
+
 export class AppModule { }

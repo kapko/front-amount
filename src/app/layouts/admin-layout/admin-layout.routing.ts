@@ -24,6 +24,10 @@ export const AdminLayoutRoutes: Routes = [
                 component: TableListComponent
             },
             {
+                path: 'edit/:id',
+                component: NewPostComponent
+            },
+            {
                 path: '**',
                 redirectTo: 'list',
                 pathMatch: 'full',

@@ -1,36 +1,67 @@
 <div class="main-content">
     <div class="container-fluid">
+
+        <div class="alert alert-danger" *ngIf="note" (click)="hideNote()">
+            <span><b>Ошибка: </b> {{note}}</span>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="warn" (click)="hideNote()">
+            <span><b>Внимание: </b> {{warn}}</span>
+        </div>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Cписок продуктов <i
-                            class="material-icons cursor  f-right" routerLink="../new-post">plus_one</i></h4>
-                        <p class="card-category"> Тут можно редактировать и удалять</p>
-                        
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Cписок продуктов
+                            <button class="f-right"
+                            mat-raised-button 
+                            routerLink="../new-post"
+                            class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">add</i>
+                                <div class="ripple-container"></div>
+                            </button></h4>
+                        <p class="card-category"> Тут можно редактировать и удалять </p>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>Salary</th>
+                                    <!-- <th>ID</th> -->
+                                    <th>QRcode</th>
+                                    <th>Название</th>
+                                    <th>Единица</th>
+                                    <th>Цена</th>
+                                    <th>Сколько всего</th>
+                                    <th>Цена всего</th>
+                                    <th>Цена всего</th>
+                                    <th>Продано ед.</th>
+                                    <th>Продано в сомах</th>
+                                    <th>Осталось в ед.</th>
+                                    <th>Осталось в сомах</th>
                                     <th></th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>Niger</td>
-                                        <td>Oud-Turnhout</td>
-                                        <td class="text-primary">$36,738</td>
+                                    <tr *ngFor="let post of posts$ | async">
+                                        <!-- <td>{{post?._id}}</td> -->
+                                        <td>{{post.qrcode}}</td>
+                                        <td>{{post.title}}</td>
+                                        <td>{{post.amount}}</td>
+                                        <td>{{post.price}}</td>
+                                        <td>{{post.totalAmount}}</td>
+                                        <td>{{post.totalPrice}}</td>
+                                        <td>{{post.sold}}</td>
+                                        <td>{{post.soldPrice}}</td>
+                                        <td>{{post.soldAmount}}</td>
+                                        <td>{{post.balanceAmount}}</td>
+                                        <td>{{post.balancePrice}}</td>
                                         <td>
-                                            <i class="material-icons cursor f-right">create</i>
-                                            <i class="material-icons cursor f-right">delete</i>
+                                            <i [routerLink]="['/posts/edit/', post._id]"
+                                            class="material-icons cursor f-right">create</i>
+                                            <i (dblclick)="deletePost(post)"
+                                            class="material-icons cursor f-right">delete</i>
                                         </td>
                                     </tr>
                                 </tbody>

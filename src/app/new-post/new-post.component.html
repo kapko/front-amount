@@ -1,9 +1,14 @@
 <div class="main-content">
     <div class="container-fluid">
+
+        <div class="alert alert-danger" (click)="hideNote()" *ngIf="note">
+            <span><b> Danger - </b> {{note}}</span>
+        </div>
+
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-primary">
                         <h4 class="card-title">Новый Продукт</h4>
                         <p class="card-category">Введите данные и нажмите создать</p>
                     </div>
@@ -82,7 +87,7 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button [disabled]="form.invalid" type="submit" class="btn btn-danger pull-right">Создать</button>
+                            <button mat-raised-button [disabled]="form.invalid" type="submit" class="btn btn-danger pull-right">{{paramsId ? 'Обновить' : 'Создать'}}</button>
                             <div class="clearfix"></div>
                         </form>
 
