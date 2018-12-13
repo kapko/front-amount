@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && ng serve -o",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build -prod"
   },
   "engines": {
     "node": "6.11.1",
