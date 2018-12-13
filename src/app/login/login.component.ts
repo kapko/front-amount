@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                     token => {
                         localStorage.setItem('token', token);
-                        this.router.navigate(['/list']);
+                        this.router.navigate(['/posts']);
                     },
                     err => {
                         console.log(err);
