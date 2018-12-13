@@ -1,23 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
 
-const routes: Routes =[
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [
-        {
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]}
+const routes: Routes = [
+    {
+        path: '',
+        redirectTo: ' posts',
+        pathMatch: 'full',
+    },
+    {
+        path: '',
+        component: AdminLayoutComponent,
+        canActivate: [AuthGuardGuard],
+        children: [
+            {
+                path: '',
+                loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+            }]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
+
     // { path: 'dashboard',      component: DashboardComponent },
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },
@@ -30,12 +40,12 @@ const routes: Routes =[
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        RouterModule.forRoot(routes)
+    ],
+    exports: [
+    ],
 })
 export class AppRoutingModule { }

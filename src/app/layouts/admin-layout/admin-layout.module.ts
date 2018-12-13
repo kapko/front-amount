@@ -20,6 +20,9 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { NewPostComponent } from 'app/new-post/new-post.component';
+import { PostsComponent } from 'app/posts/posts.component';
+import { CommonHelper } from 'app/services/common.helper.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import {
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatTooltipModule,
   ],
@@ -41,6 +45,11 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    NewPostComponent,
+    PostsComponent
+  ],
+  providers: [
+    CommonHelper
   ]
 })
 

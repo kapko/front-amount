@@ -1,0 +1,94 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Новый Продукт</h4>
+                        <p class="card-category">Введите данные и нажмите создать</p>
+                    </div>
+                    <div class="card-body">
+
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="qrcode" matInput placeholder="Qr-Code">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="title" matInput placeholder="Название">
+                                    </mat-form-field>
+                                    <span class="error-text" *ngIf="showError('title', 'required')">Название обязательное поле</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="amount" matInput placeholder="Единица шт.">
+                                    </mat-form-field>
+                                    <span class="error-text" *ngIf="showError('amount', 'required')">Единица обязательное поле</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="price" matInput placeholder="Цена шт.">
+                                    </mat-form-field>
+                                    <span class="error-text" *ngIf="showError('price', 'required')">Цена обязательное поле</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="totalAmount" matInput placeholder="Сколько всего">
+                                    </mat-form-field>
+                                    <span class="error-text" *ngIf="showError('totalAmount', 'required')">Это обязательное поле</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="totalPrice" matInput placeholder="Цена всего">
+                                    </mat-form-field>
+                                    <span class="error-text" *ngIf="showError('totalPrice', 'required')">Это обязательное поле</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="sold" matInput placeholder="Продано шт. ед.">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="soldAmount" matInput placeholder="Осталось шт. ед.">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="soldPrice" matInput placeholder="Продано в сомах">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" matInput formControlName="balanceAmount" placeholder="Осталось шт. ед.">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" matInput formControlName="balancePrice" placeholder="Осталось в сомах">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button [disabled]="form.invalid" type="submit" class="btn btn-danger pull-right">Создать</button>
+                            <div class="clearfix"></div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

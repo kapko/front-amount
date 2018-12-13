@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    Ваше имя:<br>
+    <input formControlName="name" type="text" >
+    <br>
+    Номер телефона<br>
+    <input formControlName="phone" type="text" >
+    <br><br>
+    <button type="submit">Вход</button>
+</form>
