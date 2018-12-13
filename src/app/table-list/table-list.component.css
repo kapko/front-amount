@@ -5,3 +5,7 @@
 .f-right {
     float: right;
 }
+
+.db {
+    display: block;
+}
