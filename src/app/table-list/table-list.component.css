@@ -9,3 +9,7 @@
 .db {
     display: block;
 }
+
+b {
+    font-size: 18px;
+}

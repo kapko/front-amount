@@ -43,15 +43,20 @@ export class NewPostComponent implements OnInit {
         this.form = this.fb.group({
             qrcode: [null],
             title: [null, [Validators.required]],
-            amount: [null, [Validators.required]],
             price: [null, [Validators.required]],
-            totalAmount: [null, [Validators.required]],
-            totalPrice: [null, [Validators.required]],
-            sold: [null],
-            soldPrice: [null],
+            amount: [null, [Validators.required]],
             soldAmount: [null],
-            balanceAmount: [null],
-            balancePrice: [null],
+            // todo amount * price
+            // totalPrice: [null],
+            // todo sell by seller
+            // todo balance amount - soldAmount
+            // balanceAmount: [null],
+            // todo продано ед * цена = проданная цена
+            // balancePrice: [null],
+
+            // totalAmount: [null],
+            // sold: [null],
+            // soldPrice: [null],
             created: [Date.now()],
         });
     }

@@ -38,7 +38,7 @@ export class TableListComponent implements OnInit {
             );
     }
 
-    public hideAlert(): void {
+    public hideNote(): void {
         this.note = null;
         this.warn = null;
     }

@@ -1,7 +1,7 @@
 <div class="main-content">
-    <div class="container-fluid">
+    <div class="container-fluid" (click)="hideNote()">
 
-        <div class="alert alert-danger" *ngIf="note" (click)="hideNote()">
+        <div class="alert alert-danger" *ngIf="note">
             <span><b>Ошибка: </b> {{note}}</span>
         </div>
 
@@ -26,34 +26,31 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <!-- <th>ID</th> -->
-                                    <th>QRcode</th>
+                                    <!-- <th>QRcode</th> -->
                                     <th>Название</th>
-                                    <th>Единица</th>
                                     <th>Цена</th>
-                                    <th>Сколько всего</th>
-                                    <th>Цена всего</th>
+                                    <th>Количество</th>
+                                    <th>Общ. стоимость</th>
                                     <th>Продано в ед</th>
-                                    <th>Продано всего в сомах</th>
-                                    <th>Продано всего ед.</th>
                                     <th>Осталось в ед.</th>
+                                    <th>Продано в сомах</th>
                                     <th>Осталось в сомах</th>
+                                    <th>Дата</th>
                                     <th></th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let post of posts$ | async">
-                                        <!-- <td>{{post?._id}}</td> -->
-                                        <td>{{post.qrcode}}</td>
+                                        <!-- <td>{{post.qrcode}}</td> -->
                                         <td>{{post.title}}</td>
-                                        <td>{{post.amount}}</td>
                                         <td>{{post.price}}</td>
-                                        <td>{{post.totalAmount}}</td>
-                                        <td>{{post.totalPrice}}</td>
-                                        <td>{{post.sold}}</td>
-                                        <td>{{post.soldPrice}}</td>
+                                        <td>{{post.amount}}</td>
+                                        <td><b>{{post.price * post.amount}}</b></td>
                                         <td>{{post.soldAmount}}</td>
-                                        <td>{{post.balanceAmount}}</td>
-                                        <td>{{post.balancePrice}}</td>
+                                        <td>{{post.amount - post.soldAmount}}</td>
+                                        <td><b>{{post.price * post.soldAmount}}</b></td>
+                                        <td><b>{{post.price * (post.amount - post.soldAmount)}}</b></td>
+                                        <td>{{post.created | date : 'dd.MM.yyyy'}}</td>
+
                                         <td>
                                             <i [routerLink]="['/posts/edit/', post._id]"
                                             class="material-icons cursor f-right">create</i>

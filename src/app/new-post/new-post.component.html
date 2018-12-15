@@ -27,66 +27,63 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="title" matInput placeholder="Название">
                                     </mat-form-field>
-                                    <span class="error-text" *ngIf="showError('title', 'required')">Название обязательное поле</span>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="amount" matInput placeholder="Единица шт.">
-                                    </mat-form-field>
-                                    <span class="error-text" *ngIf="showError('amount', 'required')">Единица обязательное поле</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="price" matInput placeholder="Цена шт.">
-                                    </mat-form-field>
-                                    <span class="error-text" *ngIf="showError('price', 'required')">Цена обязательное поле</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="totalAmount" matInput placeholder="Сколько всего">
-                                    </mat-form-field>
-                                    <span class="error-text" *ngIf="showError('totalAmount', 'required')">Это обязательное поле</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="totalPrice" matInput placeholder="Цена всего">
-                                    </mat-form-field>
-                                    <span class="error-text" *ngIf="showError('totalPrice', 'required')">Это обязательное поле</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="sold" matInput placeholder="Продано шт. ед.">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="soldAmount" matInput placeholder="Осталось шт. ед.">
+                                        <input #price type="number" formControlName="price" matInput placeholder="Цена за шт. ед.">
                                     </mat-form-field>
                                 </div>
                             </div>
+
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input type="number" formControlName="soldPrice" matInput placeholder="Продано в сомах">
+                                        <input #amount type="number" formControlName="amount" matInput placeholder="Количество">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" formControlName="totalPrice" matInput placeholder="Общая стоимость">
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="number" #soldAmount formControlName="soldAmount" matInput placeholder="Продано шт. ед.">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="row">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input type="number" matInput formControlName="balanceAmount" placeholder="Осталось шт. ед.">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                            </div> -->
+
+                            <!-- <div class="row">
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input type="number" matInput formControlName="balancePrice" placeholder="Осталось в сомах">
                                     </mat-form-field>
                                 </div>
-                            </div>
+                            </div> -->
+
+                            <h5>Общая стоимость: {{ price.value * amount.value }}</h5>
+                            <h5>Осталось единиц: {{ amount.value - soldAmount.value }}</h5>
+                            <h5>Продано в сомах: {{ price.value * soldAmount.value }}</h5>
+                            <h5>Осталось в сомах: {{ price.value * (amount.value - soldAmount.value) }}</h5>
+                            <!-- {{post.price * (post.amount - post.soldAmount)}} -->
+
                             <button mat-raised-button [disabled]="form.invalid" type="submit" class="btn btn-danger pull-right">{{paramsId ? 'Обновить' : 'Создать'}}</button>
                             <div class="clearfix"></div>
                         </form>
